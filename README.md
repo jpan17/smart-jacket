@@ -12,3 +12,8 @@
 - Adafruit Bluefruit LE Module
 - Arduino
 - Cordova
+
+## Getting Started: Developers ## 
+- We're going to use Cordova to create this project -- follow the installation instructions here: https://cordova.apache.org/#getstarted
+- Make sure to install all of the requirements for the Android-Cordova platform: https://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html
+- Also incldue the inappbrowser plugin in your terminal: cordova plugin add cordova-plugin-inappbrowser
