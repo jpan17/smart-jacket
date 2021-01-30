@@ -21,9 +21,29 @@
 // See https://cordova.apache.org/docs/en/latest/cordova/events/events.html#deviceready
 document.addEventListener('deviceready', onDeviceReady, false);
 
+function onAccelSuccess(acceleration) {
+    var x = acceleration[0]; 
+    var y = acceleration[1];
+    var z = acceleration[2];
+
+    document.getElementById('output').innerHTML = 'x: ' + x + ', y: ' + y + ', z: ' + z;
+    sensors.disableSensor();
+}
+
+// Call itself every timeout interval
+function accelRoutine() {
+    sensors.enableSensor("ACCELEROMETER");
+    sensors.getState(onAccelSuccess, function() {document.getElementById('output').innerHTML = 'failed oops';});
+    setTimeout(accelRoutine, 1000);
+}
+
 function onDeviceReady() {
     // Cordova is now initialized. Have fun!
 
     console.log('Running cordova-' + cordova.platformId + '@' + cordova.version);
     document.getElementById('deviceready').classList.add('ready');
+    document.getElementById('output').innerHTML = 'ondeviceready';
+
+    // Accelerometer stuff
+    accelRoutine();
 }
